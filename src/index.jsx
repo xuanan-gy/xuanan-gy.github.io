@@ -17,17 +17,23 @@ import CheckOutStepOne from './pages/CheckOutStepOne';
 import CheckOutStepTwo from './pages/CheckOutStepTwo';
 import Finish from './pages/Finish';
 import { ROUTES } from './utils/Constants';
-import PrivateRoute from './components/PrivateRoute';
+// import PrivateRoute from './components/PrivateRoute';
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+
 
 const routing = (
   <Router>
-    <Route exact path={ROUTES.LOGIN} component={Login} />
-    <PrivateRoute path={ROUTES.INVENTORY} component={Inventory} />
-    <PrivateRoute path={ROUTES.INVENTORY_LIST} component={InventoryItem} />
-    <PrivateRoute path={ROUTES.CART} component={Cart} />
-    <PrivateRoute path={ROUTES.CHECKOUT_STEP_ONE} component={CheckOutStepOne} />
-    <PrivateRoute path={ROUTES.CHECKOUT_STEP_TWO} component={CheckOutStepTwo} />
-    <PrivateRoute path={ROUTES.CHECKOUT_COMPLETE} component={Finish} />
+    <Route exact path={ROUTES.LOGIN} component={Inventory} />
+    <Route path={ROUTES.INVENTORY} component={Inventory} />
+    <Route path={ROUTES.INVENTORY_LIST} component={InventoryItem} />
+    <Route  path={ROUTES.CART} component={Cart} />
+    <Route  path={ROUTES.CHECKOUT_STEP_ONE} component={CheckOutStepOne} />
+    <Route  path={ROUTES.CHECKOUT_STEP_TWO} component={CheckOutStepTwo} />
+    <Route  path={ROUTES.CHECKOUT_COMPLETE} component={Finish} />
   </Router>
 );
 
