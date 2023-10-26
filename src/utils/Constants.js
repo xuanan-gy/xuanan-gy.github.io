@@ -7,7 +7,8 @@ export const VALID_USERNAMES = [
 ];
 export const VALID_PASSWORD = "secret_sauce";
 export const ROUTES = {
-  LOGIN: "/",
+  HOME:"/",
+  LOGIN: "/login",
   INVENTORY: "/inventory.html",
   INVENTORY_LIST: "/inventory-item.html",
   CART: "/cart.html",

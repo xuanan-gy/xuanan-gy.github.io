@@ -24,4 +24,5 @@ const microsoftProvider = new firebase.auth.OAuthProvider('microsoft.com').setCu
     prompt: 'consent' // Get Consent from the user to access their basic info (optional - Recommended only during SignUp)
 });
 
+
 export { app, microsoftProvider };

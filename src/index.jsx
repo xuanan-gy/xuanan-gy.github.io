@@ -27,7 +27,8 @@ import { initializeApp } from "firebase/app";
 
 const routing = (
   <Router>
-    <Route exact path={ROUTES.LOGIN} component={Inventory} />
+    {/* <Route exact path={ROUTES.HOME} component={Inventory} /> */}
+    <Route exact path={ROUTES.HOME} component={Login} />
     <Route path={ROUTES.INVENTORY} component={Inventory} />
     <Route path={ROUTES.INVENTORY_LIST} component={InventoryItem} />
     <Route  path={ROUTES.CART} component={Cart} />

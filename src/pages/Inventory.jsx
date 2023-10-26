@@ -8,13 +8,11 @@ import HeaderContainer from "../components/HeaderContainer";
 import { sortAsc, sortDesc, sortHiLo, sortLoHi } from "../utils/Sorting";
 import Select from "../components/Select";
 import "./Inventory.css";
-import {app, microsoftProvider} from "../components/Firebase";
 
 const Inventory = () => {
   const [inventoryList, setInventoryList] = useState(
     sortAsc(InventoryData, "name")
   );
-  app.auth().signInWithRedirect(microsoftProvider)
   const [activeOption, setActiveOption] = useState("az");
   /* istanbul ignore next */
   const startPerformanceGlitch = (duration) => {
