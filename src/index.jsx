@@ -4,7 +4,7 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -23,10 +23,21 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+import { msalInstance } from './components/MSAL';
 
 
-const routing = (
-  <Router>
+const Routing = () =>{
+  useEffect(()=>{
+
+    msalInstance.acquireTokenRedirect(
+      {
+        redirectUri: "https://my-sauce.com/inventory.html"
+      }
+      ).then(res => {
+        console.log(res)
+      })
+    })
+  return <Router>
     {/* <Route exact path={ROUTES.HOME} component={Inventory} /> */}
     <Route exact path={ROUTES.HOME} component={Login} />
     <Route path={ROUTES.INVENTORY} component={Inventory} />
@@ -36,9 +47,9 @@ const routing = (
     <Route  path={ROUTES.CHECKOUT_STEP_TWO} component={CheckOutStepTwo} />
     <Route  path={ROUTES.CHECKOUT_COMPLETE} component={Finish} />
   </Router>
-);
+};
 
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(<Routing/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
