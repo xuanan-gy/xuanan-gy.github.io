@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.css';
+import MicrosoftLogin from "react-microsoft-login";
 import {
   isLockedOutUser,
   setCredentials,
@@ -11,6 +12,8 @@ import { ROUTES } from '../utils/Constants';
 import InputError, { INPUT_TYPES } from '../components/InputError';
 import SubmitButton from '../components/SubmitButton';
 import ErrorMessage from '../components/ErrorMessage';
+import {app, microsoftProvider} from "../components/Firebase";
+import { msalInstance } from '../components/MSAL';
 
 function Login(props) {
   const { history, location } = props;
@@ -32,31 +35,21 @@ function Login(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (!username) {
-      return setError('Username is required');
+    // app.auth().signInWithRedirect(microsoftProvider)
+    // .then(
+    //   (cred) => {
+    //     console.log(cred)
+    //     setCredentials(cred)
+    //     history.push(ROUTES.INVENTORY)
+    //   }
+    // )
+    msalInstance.acquireTokenRedirect(
+      {
+        redirectUri: "https://my-sauce.com/inventory.html"
     }
-
-    if (!password) {
-      return setError('Password is required');
-    }
-
-    if (verifyCredentials(username, password)) {
-      // If we're here, we have a username and password.
-      // Store the username in our cookies.
-      setCredentials(username, password);
-      // Catch our locked-out user and bail out
-      if (isLockedOutUser()) {
-        return setError('Sorry, this user has been locked out.');
-      }
-
-      // Redirect!
-      history.push(ROUTES.INVENTORY);
-    } else {
-      return setError(
-        'Username and password do not match any user in this service'
-      );
-    }
-
+    ).then(res => {
+      console.log(res)
+    })
     return '';
   };
 
@@ -67,6 +60,10 @@ function Login(props) {
   const handlePassChange = (evt) => {
     setPassword(evt.target.value);
   };
+
+ const onMicrosoftLogin = (err, data) =>{
+    console.log(err,data)
+ }
 
   return (
     <div className="login_container">
@@ -113,6 +110,7 @@ function Login(props) {
                   testId="login-button"
                   value="Login"
                 />
+                {/* <MicrosoftLogin clientId='742e3535-d6ed-4df9-baa5-76a6b54de8b3'  authCallback={onMicrosoftLogin}/> */}
               </form>
             </div>
           </div>
