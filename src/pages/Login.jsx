@@ -103,15 +103,17 @@ function Login(props) {
                   errorMessage={`Epic sadface: ${error}`}
                   onClick={dismissError}
                 />
-                <SubmitButton
+                
+                {/* <MicrosoftLogin clientId='742e3535-d6ed-4df9-baa5-76a6b54de8b3'  authCallback={onMicrosoftLogin}/> */}
+              </form>
+              <SubmitButton
                   // `btn_action` has no style function
                   // but is there for backwards compatibility
                   customClass="btn_action"
                   testId="login-button"
                   value="Login"
+                  onClick={handleSubmit}
                 />
-                {/* <MicrosoftLogin clientId='742e3535-d6ed-4df9-baa5-76a6b54de8b3'  authCallback={onMicrosoftLogin}/> */}
-              </form>
             </div>
           </div>
         </div>

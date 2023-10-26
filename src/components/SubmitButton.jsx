@@ -5,8 +5,8 @@ import "./SubmitButton.css";
 const SubmitButton = ({ customClass, testId, value, ...props }) => {
   const extraClass = customClass ? ` ${customClass}` : "";
   return (
-    <input
-      type="submit"
+    <button
+      // type="submit"
       className={`submit-button${extraClass}`}
       value={value}
       {...(testId
@@ -17,7 +17,7 @@ const SubmitButton = ({ customClass, testId, value, ...props }) => {
           }
         : {})}
       {...props}
-    />
+    >Click!</button>
   );
 };
 
