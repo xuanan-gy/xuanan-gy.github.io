@@ -36,6 +36,9 @@ const Routing = () =>{
       ).then(res => {
         console.log(res)
       })
+      .catch((e) => {
+        console.log(e)
+      })
     })
   return <Router>
     {/* <Route exact path={ROUTES.HOME} component={Inventory} /> */}
