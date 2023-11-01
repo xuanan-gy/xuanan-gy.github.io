@@ -43,14 +43,12 @@ function Login(props) {
     //     history.push(ROUTES.INVENTORY)
     //   }
     // )
-    msalInstance.acquireTokenRedirect(
-      {
-        redirectUri: "https://my-sauce.com/inventory.html"
+    app.auth().signInWithPopup(microsoftProvider)
+    .then(
+    (result)=>{
+      history.push(ROUTES.INVENTORY)
     }
-    ).then(res => {
-      console.log(res)
-    })
-    return '';
+    )
   };
 
   const handleUserChange = (evt) => {
@@ -73,39 +71,7 @@ function Login(props) {
         <div className="login_wrapper-inner">
           <div id="login_button_container" className="form_column">
             <div className="login-box">
-              <form onSubmit={handleSubmit}>
-                <InputError
-                  isError={Boolean(error)}
-                  type={INPUT_TYPES.TEXT}
-                  value={username}
-                  onChange={handleUserChange}
-                  testId="username"
-                  placeholder="Username"
-                  // Custom
-                  id="user-name"
-                  name="user-name"
-                  autoCorrect="off"
-                  autoCapitalize="none"
-                />
-                <InputError
-                  isError={Boolean(error)}
-                  type={INPUT_TYPES.PASSWORD}
-                  value={password}
-                  onChange={handlePassChange}
-                  testId="password"
-                  placeholder="Password"
-                  // Custom
-                  autoCorrect="off"
-                  autoCapitalize="none"
-                />
-                <ErrorMessage
-                  isError={Boolean(error)}
-                  errorMessage={`Epic sadface: ${error}`}
-                  onClick={dismissError}
-                />
-                
-                {/* <MicrosoftLogin clientId='742e3535-d6ed-4df9-baa5-76a6b54de8b3'  authCallback={onMicrosoftLogin}/> */}
-              </form>
+              {/*  */}
               <SubmitButton
                   // `btn_action` has no style function
                   // but is there for backwards compatibility
