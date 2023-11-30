@@ -31,7 +31,7 @@ const Routing = () =>{
 
     msalInstance.acquireTokenRedirect(
       {
-        redirectUri: "https://xuanan-gy.github.io"
+        redirectUri: "https://xuanan-gy.github.io/inventory.html"
       }
       ).then(res => {
         console.log(res)
